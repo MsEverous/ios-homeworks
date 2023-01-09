@@ -86,7 +86,7 @@ class ProfileHeaderView: UIView {
             button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             button.heightAnchor.constraint(equalToConstant: 50),
             button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),//Чтобы кнопка и другие элементы выше были во view и отрабатывались
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),//Чтобы кнопка и другие элементы выше были во view и отрабатывались
             
             statusLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 32),
             statusLabel.heightAnchor.constraint(equalTo: avatar.heightAnchor, multiplier: 0.3),
