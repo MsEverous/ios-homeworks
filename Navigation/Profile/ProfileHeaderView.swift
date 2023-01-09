@@ -60,41 +60,6 @@ class ProfileHeaderView: UIView {
         
     }
     
-    // УСТАНОВКА КОНСТРЕЙНТОВ
-    private func avatarConstraints() -> ([NSLayoutConstraint]) {
-        let topConstraint = avatar.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
-        let leadingConstraint = avatar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
-        let widthConstraint = avatar.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3)
-        let heightConstraint = avatar.heightAnchor.constraint(equalTo: self.avatar.widthAnchor)
-        return [topConstraint, leadingConstraint, widthConstraint, heightConstraint]
-    }
-    
-    private func nameLabelConstraints() -> ([NSLayoutConstraint]) {
-        let topConstraint = self.nameLabel.topAnchor.constraint(equalTo: avatar.topAnchor) //Сверху
-        let leadingConstraint = self.nameLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 32)
-        let heightConstraint = self.nameLabel.heightAnchor.constraint(equalTo: avatar.heightAnchor, multiplier: 0.3)
-        let trailingConstraint = self.nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        return [topConstraint, leadingConstraint, heightConstraint, trailingConstraint]
-    }
-    
-    private func buttonConstraints() -> ([NSLayoutConstraint]) {
-        let topConstraint = self.button.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 16)
-        let leadingConstraint = self.button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
-        let heightConstraint = self.button.heightAnchor.constraint(equalToConstant: 50)
-        let trailingConstraint = self.button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        return [topConstraint, leadingConstraint, heightConstraint, trailingConstraint]
-    }
-    
-    private func statusLabelConstraints() -> ([NSLayoutConstraint]) {
-//        let topConstraint = self.statusLabel.topAnchor.constraint(equalTo: avatar.topAnchor) //Сверху
-        let leadingConstraint = self.statusLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 32)
-        let heightConstraint = self.statusLabel.heightAnchor.constraint(equalTo: avatar.heightAnchor, multiplier: 0.3)
-        let trailingConstraint = self.statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        let bottomConstraint = self.statusLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -34)
-        return [leadingConstraint, heightConstraint, trailingConstraint, bottomConstraint]
-    }
-    
-
 //УСТАНОВКА НА ЭКРАН
     
     private func setupView() {
@@ -104,12 +69,30 @@ class ProfileHeaderView: UIView {
         self.addSubview(button)
         self.addSubview(statusLabel)
         buttonPressed()
-        
-        let avatarConstraints = avatarConstraints()
-        let nameLabelConstraints = nameLabelConstraints()
-        let buttonConstraints = buttonConstraints()
-        let statusLabelConstraints = statusLabelConstraints()
-        NSLayoutConstraint.activate(avatarConstraints + nameLabelConstraints + buttonConstraints + statusLabelConstraints)
+  
+        //Установка констрейнтов
+        NSLayoutConstraint.activate(
+            [avatar.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            avatar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            avatar.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3),
+            avatar.heightAnchor.constraint(equalTo: self.avatar.widthAnchor),
+             
+            nameLabel.topAnchor.constraint(equalTo: avatar.topAnchor), //Сверху
+            nameLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 32),
+            nameLabel.heightAnchor.constraint(equalTo: avatar.heightAnchor, multiplier: 0.3),
+            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+             
+            button.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 16),
+            button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),//Чтобы кнопка и другие элементы выше были во view и отрабатывались
+            
+            statusLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 32),
+            statusLabel.heightAnchor.constraint(equalTo: avatar.heightAnchor, multiplier: 0.3),
+            statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            statusLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -34)]
+        )
     }
 
     override func layoutSubviews() {
