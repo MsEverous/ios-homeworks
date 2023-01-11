@@ -16,8 +16,7 @@ class InfoViewController: UIViewController {
         button.setTitle("Редактировать пост", for: .normal) //Надпись внутри кнопки
         button.setTitleColor(.lightGray, for: .normal) //Цвет надписи кнопки
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24) //Толщина и размер кнопки
-        button.translatesAutoresizingMaskIntoConstraints = false //Отключаем констрейнты
-//        button.constraints //Дописать констрейн
+        button.translatesAutoresizingMaskIntoConstraints = false 
         button.addTarget(self, action: #selector(createAllertController), for: .touchUpInside)
         return button
     }()

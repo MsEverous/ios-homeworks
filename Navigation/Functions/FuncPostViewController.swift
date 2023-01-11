@@ -14,7 +14,6 @@ extension PostViewController {
         view.backgroundColor = .systemYellow
         navigationItem.title = titlePost
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        //        navigationItem.rightBarButtonItem = button
     }
     
     @objc func saveProfile() {
