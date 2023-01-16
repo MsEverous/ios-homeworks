@@ -81,7 +81,7 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        scrollView.keyboardDismissMode = .interactive
+        scrollView.keyboardDismissMode = .interactive //как система отключает клавиатуру при начале перетаскивания в режиме прокрутки.
         self.view.addSubview(scrollView)
         scrollView.addSubview(logoViewImage)
         scrollView.addSubview(stackView)
