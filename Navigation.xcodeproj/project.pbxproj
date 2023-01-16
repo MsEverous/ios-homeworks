@@ -20,6 +20,7 @@
 		E4104250294DAF84004D89EE /* FuncFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E410424F294DAF84004D89EE /* FuncFeedViewController.swift */; };
 		E410425229507E54004D89EE /* FuncInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E410425129507E54004D89EE /* FuncInfoViewController.swift */; };
 		E410427C295C333A004D89EE /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E410427B295C333A004D89EE /* ProfileHeaderView.swift */; };
+		E46424C0297147F10086B2DC /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46424BF297147F10086B2DC /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		E410424F294DAF84004D89EE /* FuncFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncFeedViewController.swift; sourceTree = "<group>"; };
 		E410425129507E54004D89EE /* FuncInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncInfoViewController.swift; sourceTree = "<group>"; };
 		E410427B295C333A004D89EE /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		E46424BF297147F10086B2DC /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				E410427B295C333A004D89EE /* ProfileHeaderView.swift */,
 				E4104244294B409C004D89EE /* ProfileViewController.swift */,
+				E46424BF297147F10086B2DC /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				E4104245294B409C004D89EE /* ProfileViewController.swift in Sources */,
 				E410424C294DADD3004D89EE /* FuncSceneDelegate.swift in Sources */,
 				E4104243294B4088004D89EE /* FeedViewController.swift in Sources */,
+				E46424C0297147F10086B2DC /* LogInViewController.swift in Sources */,
 				E4104231294B3FFF004D89EE /* SceneDelegate.swift in Sources */,
 				E4104250294DAF84004D89EE /* FuncFeedViewController.swift in Sources */,
 				E410424E294DAF57004D89EE /* FuncPostViewController.swift in Sources */,
@@ -331,12 +335,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6B932AXQ7J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,12 +363,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6B932AXQ7J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
