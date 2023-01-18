@@ -23,6 +23,13 @@ class LogInViewController: UIViewController {
         return scrollView
     }()
     
+    private lazy var contentView: UIView = {
+        let contetView = UIView()
+        contetView.backgroundColor = .white
+        contetView.translatesAutoresizingMaskIntoConstraints = false
+        return contetView
+    }()
+    
     private lazy var stackView: UIStackView = {
        let stackView = UIStackView()
         stackView.layer.borderColor = UIColor.lightGray.cgColor
@@ -32,8 +39,6 @@ class LogInViewController: UIViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
-        stackView.addArrangedSubview(emailField)
-        stackView.addArrangedSubview(passwordField)
         stackView.translatesAutoresizingMaskIntoConstraints = false
        return stackView
     }()
@@ -82,10 +87,14 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         scrollView.keyboardDismissMode = .interactive //как система отключает клавиатуру при начале перетаскивания в режиме прокрутки.
+        hideKeyboardWhenTappedAround() //Функция чтобы клавиатура убиралась
         self.view.addSubview(scrollView)
-        scrollView.addSubview(logoViewImage)
-        scrollView.addSubview(stackView)
-        scrollView.addSubview(entryProfileButton)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(logoViewImage)
+        contentView.addSubview(stackView)
+        contentView.addSubview(entryProfileButton)
+        stackView.addArrangedSubview(emailField)
+        stackView.addArrangedSubview(passwordField)
         setupConstraints()
     }
     
@@ -114,29 +123,53 @@ class LogInViewController: UIViewController {
         self.scrollView.contentInset = .zero
     }
     
-    private func setupConstraints() {
-        NSLayoutConstraint.activate(
-            [logoViewImage.widthAnchor.constraint(equalToConstant: 100),
-             logoViewImage.heightAnchor.constraint(equalToConstant: 100),
-             logoViewImage.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
-             logoViewImage.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor, constant: 120),
-             
-             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-             scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-             
-             stackView.topAnchor.constraint(equalTo: logoViewImage.bottomAnchor, constant: 120),
-             stackView.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-             stackView.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-             stackView.heightAnchor.constraint(equalToConstant: 100),
-
-             entryProfileButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
-             entryProfileButton.heightAnchor.constraint(equalToConstant: 50),
-             entryProfileButton.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-             entryProfileButton.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-             ])
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
+        
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+
+            logoViewImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
+            logoViewImage.widthAnchor.constraint(equalToConstant: 100),
+            logoViewImage.heightAnchor.constraint(equalToConstant: 100),
+            logoViewImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+
+            stackView.topAnchor.constraint(equalTo: logoViewImage.bottomAnchor, constant: 120),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            stackView.heightAnchor.constraint(equalToConstant: 100),
+
+            emailField.topAnchor.constraint(equalTo: stackView.topAnchor),
+            emailField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            emailField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            
+            passwordField.topAnchor.constraint(equalTo: stackView.bottomAnchor),
+            passwordField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            passwordField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+                
+            entryProfileButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            entryProfileButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            entryProfileButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            entryProfileButton.heightAnchor.constraint(equalToConstant: 50),
+            entryProfileButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
+            }
 
     @objc func entryProfile() {
         let profileViewController = ProfileViewController() //Создаем вью куда будем переходить

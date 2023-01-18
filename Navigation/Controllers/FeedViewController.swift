@@ -8,11 +8,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    
-    struct Post {
-         var title: String
-     }
-    
+        
      var post = Post(title: "Мои посты")
      lazy var button: UIButton = {
          let button = UIButton() //Создаем кнопку
