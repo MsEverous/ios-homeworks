@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .lightGray
         self.navigationItem.title = "Profile"
+        navigationController?.navigationBar.isHidden = false
         self.view.addSubview(profileHeaderView)
         self.view.addSubview(newButton)
         
