@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "My cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
+    }()
     
     var postArray = [Post(author: "Netflix.official", description: "«Элита» — испанский веб-сериал, премьера которого состоялась 5 октября 2018 года на Netflix. Сериал был создан Карлосом Монтеро и Дарио Мадрона.", image: "Elit", likes: 500, views: 587),
         Post(author: "Netflix.official", description: "Половое воспитание» британский комедийно-драматический телесериал, рассказывающий о проблемах учащихся средней школы английского городка Мурдэйл.", image: "Sex education", likes: 748, views: 900),
