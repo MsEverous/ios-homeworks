@@ -81,7 +81,9 @@ class ProfileHeaderView: UIView {
 //УСТАНОВКА НА ЭКРАН
     
     private func setupView() {
+
         self.backgroundColor = .lightGray
+        
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(setStatusButton)
@@ -111,7 +113,7 @@ class ProfileHeaderView: UIView {
              setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
              setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
              setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-            
+
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 32),
             statusLabel.heightAnchor.constraint(equalTo: avatarImageView.heightAnchor, multiplier: 0.3),
             statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
