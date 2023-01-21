@@ -1,3 +1,10 @@
+//
+//  ProfileHeaderView.swift
+//  Navigation
+//
+//  Created by Лариса Терегулова on 28.12.2022.
+//
+
 import UIKit
 
 class ProfileHeaderView: UIView {
