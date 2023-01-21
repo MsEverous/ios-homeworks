@@ -1,16 +1,11 @@
-//
-//  ProfileHeaderView.swift
-//  Navigation
-//
-//  Created by Лариса Терегулова on 28.12.2022.
-//
-
 import UIKit
 
 class ProfileHeaderView: UIView {
     
+    private var statusText: String = "Waiting for something...."
+    
     //УСТАНОВКА ЭЛЕМЕНТОВ
-    lazy var avatar: UIImageView = {
+    lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 3 //Ширина рамки
         imageView.layer.borderColor = UIColor.white.cgColor //Цвет рамки
@@ -20,7 +15,7 @@ class ProfileHeaderView: UIView {
         return imageView
     }()
     
-    lazy var nameLabel: UILabel = {
+    lazy var fullNameLabel: UILabel = {
         var label = UILabel(frame: .zero)
         label.text = "Cut seal"
         label.textColor = .black
@@ -38,7 +33,22 @@ class ProfileHeaderView: UIView {
         return statusLabel
     }()
     
-    lazy var button: UIButton = {
+    lazy var statusTextField: UITextField = {
+        var statusTextField = UITextField()
+        statusTextField.leftView = UIView(frame: CGRect(x: self.frame.minX, y: self.frame.minY, width: 10, height: self.frame.height))
+        statusTextField.leftViewMode = .always
+        statusTextField.backgroundColor = .white
+        statusTextField.layer.cornerRadius = 12
+        statusTextField.layer.borderWidth = 1
+        statusTextField.layer.borderColor = UIColor.black.cgColor
+        statusTextField.font = UIFont.systemFont(ofSize: 15)
+        statusTextField.textColor = .black
+        statusTextField.translatesAutoresizingMaskIntoConstraints = false
+        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        return statusTextField
+    }()
+    
+    lazy var setStatusButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Show status", for: .normal)
         button.backgroundColor = .systemBlue
@@ -54,50 +64,57 @@ class ProfileHeaderView: UIView {
     }()
     
     @objc func buttonPressed() {
-        if statusLabel.text != nil {
-            print(statusLabel.text!)
-        }
-        
+            statusLabel.text = statusText
+    }
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text ?? statusText
     }
     
 //УСТАНОВКА НА ЭКРАН
     
     private func setupView() {
-        self.backgroundColor = .darkGray
-        self.addSubview(avatar)
-        self.addSubview(nameLabel)
-        self.addSubview(button)
+        self.backgroundColor = .lightGray
+        self.addSubview(avatarImageView)
+        self.addSubview(fullNameLabel)
+        self.addSubview(setStatusButton)
         self.addSubview(statusLabel)
+        self.addSubview(statusTextField)
         buttonPressed()
   
         //Установка констрейнтов
         NSLayoutConstraint.activate(
-            [avatar.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            avatar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            avatar.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3),
-            avatar.heightAnchor.constraint(equalTo: self.avatar.widthAnchor),
+            [avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+             avatarImageView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3),
+             avatarImageView.heightAnchor.constraint(equalTo: self.avatarImageView.widthAnchor),
              
-            nameLabel.topAnchor.constraint(equalTo: avatar.topAnchor), //Сверху
-            nameLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 32),
-            nameLabel.heightAnchor.constraint(equalTo: avatar.heightAnchor, multiplier: 0.3),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+             fullNameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor), //Сверху
+             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 32),
+             fullNameLabel.heightAnchor.constraint(equalTo: avatarImageView.heightAnchor, multiplier: 0.3),
+             fullNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
              
-            button.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 16),
-            button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            button.heightAnchor.constraint(equalToConstant: 50),
-            button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),//Чтобы кнопка и другие элементы выше были во view и отрабатывались
+             statusTextField.heightAnchor.constraint(equalToConstant: 40),
+             statusTextField.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor),
+             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
+             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+             setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+             setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
-            statusLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 32),
-            statusLabel.heightAnchor.constraint(equalTo: avatar.heightAnchor, multiplier: 0.3),
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 32),
+            statusLabel.heightAnchor.constraint(equalTo: avatarImageView.heightAnchor, multiplier: 0.3),
             statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            statusLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -34)]
+            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -50)]
         )
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.avatar.layer.cornerRadius = self.avatar.frame.height/2
+        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.height/2
     }
     
     override init(frame: CGRect) {
