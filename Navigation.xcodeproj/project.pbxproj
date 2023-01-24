@@ -22,6 +22,7 @@
 		E410427C295C333A004D89EE /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E410427B295C333A004D89EE /* ProfileHeaderView.swift */; };
 		E46424C0297147F10086B2DC /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46424BF297147F10086B2DC /* LogInViewController.swift */; };
 		E4F2D9602976BC37002D94CA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2D95F2976BC37002D94CA /* Post.swift */; };
+		E4F2D962297AA03D002D94CA /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2D961297AA03D002D94CA /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E410427B295C333A004D89EE /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		E46424BF297147F10086B2DC /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E4F2D95F2976BC37002D94CA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		E4F2D961297AA03D002D94CA /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				E410427B295C333A004D89EE /* ProfileHeaderView.swift */,
 				E4104244294B409C004D89EE /* ProfileViewController.swift */,
 				E46424BF297147F10086B2DC /* LogInViewController.swift */,
+				E4F2D961297AA03D002D94CA /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				E4F2D9602976BC37002D94CA /* Post.swift in Sources */,
 				E410424A294C6F31004D89EE /* InfoViewController.swift in Sources */,
 				E4104245294B409C004D89EE /* ProfileViewController.swift in Sources */,
+				E4F2D962297AA03D002D94CA /* PostTableViewCell.swift in Sources */,
 				E410424C294DADD3004D89EE /* FuncSceneDelegate.swift in Sources */,
 				E4104243294B4088004D89EE /* FeedViewController.swift in Sources */,
 				E46424C0297147F10086B2DC /* LogInViewController.swift in Sources */,

@@ -81,7 +81,9 @@ class ProfileHeaderView: UIView {
 //УСТАНОВКА НА ЭКРАН
     
     private func setupView() {
-        self.backgroundColor = .darkGray
+
+        self.backgroundColor = .lightGray
+        
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(setStatusButton)
@@ -101,17 +103,17 @@ class ProfileHeaderView: UIView {
              fullNameLabel.heightAnchor.constraint(equalTo: avatarImageView.heightAnchor, multiplier: 0.3),
              fullNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
              
-             statusTextField.heightAnchor.constraint(equalToConstant: 30),
-             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant:  -16),
-             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
-             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 5),
-             
-//             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-             setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+             statusTextField.heightAnchor.constraint(equalToConstant: 40),
+             statusTextField.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor),
+             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
              setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-           setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor),//Чтобы кнопка и другие элементы выше были во view и отрабатывались
-            
+             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+             setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+             setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 32),
             statusLabel.heightAnchor.constraint(equalTo: avatarImageView.heightAnchor, multiplier: 0.3),
             statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),

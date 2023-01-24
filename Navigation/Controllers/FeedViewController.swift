@@ -9,7 +9,6 @@ import UIKit
 
 class FeedViewController: UIViewController {
         
-     var post = Post(title: "Мои посты")
      lazy var button: UIButton = {
          let button = UIButton() //Создаем кнопку
          button.backgroundColor = .green //Задаем цвет кнопки
