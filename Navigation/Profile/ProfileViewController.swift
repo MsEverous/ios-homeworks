@@ -10,19 +10,16 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
-        var tableView = UITableView()
+        var tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "My cell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
-    var postArray = [Post(author: "Netflix.official", description: "«Элита» — испанский веб-сериал, премьера которого состоялась 5 октября 2018 года на Netflix. Сериал был создан Карлосом Монтеро и Дарио Мадрона.", image: "Elit", likes: 500, views: 587),
-        Post(author: "Netflix.official", description: "Половое воспитание» британский комедийно-драматический телесериал, рассказывающий о проблемах учащихся средней школы английского городка Мурдэйл.", image: "Sex education", likes: 748, views: 900),
-        Post(author: "Netflix.official", description: "«Ты» — американский драматический сериал с элементами триллера по мотивам книг , разработанный Грегом Берланти и Серой Гэмбл, и спродюсированный студией Warner Bros.", image: "You", likes: 1000, views: 1000),
-        Post(author: "Netflix.official", description: "«13 причи́н почему́» — американский драматический телесериал, основанный на одноимённом романе Джея Эшера 2007 года. Книга адаптирована для телеэкрана Брайаном Йорки.", image: "11 reason ", likes: 980, views: 1026),
-        Post(author: "Netflix.official", description: "Очень странные дела - это остросюжетная фантастика, рассказывающая о невероятных сверхъестественных событиях, происходивших в восьмидесятые годы прошлого столетия. Оригинальный сюжет начинался с исчезновения одного из местных подростков. Троица друзей собирается разыскать друга. К делу подключается и полиция с матерью и братом пропавшего. Главные действующие лица также сталкиваются с загадочной девочкой, что обладает рядом сверхъестественных способностей. ", image: "Strange things", likes: 3675, views: 6790)]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,22 +37,36 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
-//MARK: -UITableViewDataSource
+    //MARK: -UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+           2
+       }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return postArray.count
+         section == 0 ? 1 : postArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "My cell", for: indexPath) as? PostTableViewCell else { fatalError() }
-        let post = self.postArray[indexPath.row]
-        cell.setupPost(post: post)
-        return cell
+        if indexPath.section == 0 {
+            return PhotosTableViewCell()
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else { fatalError() }
+            let post = postArray[indexPath.row]
+            cell.setupPost(post: post)
+            return cell
+        }
     }
     
-//MARK: -UITableViewDelegate
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        ProfileHeaderView()
-  }
+    //MARK: -UITableViewDelegate
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        section == 0 ? ProfileHeaderView() : nil
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            self.navigationController?.pushViewController(PhotosViewController(), animated: true)
+        }
+    } //Открытие галереи при нажатии на фото
     
 }
     
