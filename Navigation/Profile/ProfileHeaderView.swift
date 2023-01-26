@@ -82,7 +82,7 @@ class ProfileHeaderView: UIView {
     
     private func setupView() {
 
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .systemGray6
         
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
