@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
@@ -18,21 +18,25 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemGray6
         self.navigationController?.navigationBar.isHidden = false
         self.view.addSubview(self.tableView)
-        
+   
         NSLayoutConstraint.activate([
             self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -67,7 +71,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.pushViewController(PhotosViewController(), animated: true)
         }
     } //Открытие галереи при нажатии на фото
-    
+
 }
     
 //    private lazy var profileHeaderView: ProfileHeaderView = {
