@@ -16,7 +16,7 @@ extension SceneDelegate {
     } //Создаем таббар
     
     func createProfileViewController() -> UINavigationController {
-        let profileViewController = UINavigationController(rootViewController: LogInViewController())
+        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         profileViewController.title = "Профиль"
         profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 0)
         return profileViewController

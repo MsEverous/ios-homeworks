@@ -65,9 +65,9 @@ extension LogInViewController {
     } //Проверка на количество символов
     
     func checkCorrectData() -> Bool {
-        if emailField.text != "" && emailField.text != "la!@ma.ru" {
+        if emailField.text != "" && emailField.text != "la@ma.ru" {
             UIView.animate(withDuration: 1, delay: 0.3) {
-                let alert = UIAlertController(title: "Неверный email", message: "А это верный: la!@ma.ru", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Неверный email", message: "А это верный: la@ma.ru", preferredStyle: .alert)
                 let choice = UIAlertAction(title: "Я понял👌", style: .cancel)
                 alert.addAction(choice)
                 self.present(alert, animated: true)

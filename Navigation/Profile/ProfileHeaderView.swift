@@ -61,7 +61,7 @@ class ProfileHeaderView: UIView {
     
     lazy var setStatusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("Set status", for: .normal)
         button.backgroundColor = .systemBlue
         button.tintColor = .white
         button.layer.cornerRadius = 4
@@ -93,7 +93,18 @@ class ProfileHeaderView: UIView {
     
     //Функции для смены статуса
     @objc func buttonPressed() {
-               statusLabel.text = statusText
+        if statusTextField.text != "" {
+            statusLabel.text = statusText
+        } else {
+            UIView.animate(withDuration: 0.5, delay: 0.3) {
+                self.statusTextField.backgroundColor = UIColor(named: "errorFieldColor")
+                self.statusTextField.shake()
+            } completion: { _ in
+                UIView.animate(withDuration: 0.5, delay: 0.3) {
+                    self.statusTextField.backgroundColor = .clear
+                }
+            }
+        }
        }
        
     @objc func statusTextChanged(_ textField: UITextField) {
