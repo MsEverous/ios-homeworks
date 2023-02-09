@@ -91,6 +91,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    //Функции для смены статуса
     @objc func buttonPressed() {
                statusLabel.text = statusText
        }
@@ -98,13 +99,14 @@ class ProfileHeaderView: UIView {
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? statusText
     }
+    //
     
     private lazy var avatarCenter = avatarImageView.center
     private lazy var avatarBounds = avatarImageView.layer.bounds
     private lazy var tabBar = ((superview as? UITableView)?.dataSource as? UIViewController)?.tabBarController?.tabBar
     private lazy var avatarSize = CGFloat(220 - 3 * 16 - 50.0)
   
-       
+    //Функция анимации аватара
     @objc func animationOfAvatar() {
         avatarCenter = avatarImageView.center
         avatarBounds = avatarImageView.bounds
@@ -114,14 +116,14 @@ class ProfileHeaderView: UIView {
             avatarImageView.layer.cornerRadius = 0
             avatarImageView.center = animationView.center
             avatarImageView.layer.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
-            tabBar?.frame.origin.y = UIScreen.main.bounds.height
+            tabBar?.frame.origin.y = UIScreen.main.bounds.height //ширина экрана
         } completion: { _ in
             UIView.animate(withDuration: 0.3, delay: 0.0) { [self] in
                 exitButton.alpha = 1
                 }
             }
     }
-    
+    //Функция возврата профиля страницы
     @objc func returnProfileView() {
         UIView.animate(withDuration: 0.3) { [self] in
             exitButton.alpha = 0
@@ -141,10 +143,8 @@ class ProfileHeaderView: UIView {
     }
     
 //УСТАНОВКА НА ЭКРАН
-    
     private func setupView() {
         self.backgroundColor = .systemGray6
-        
         self.addSubview(fullNameLabel)
         self.addSubview(setStatusButton)
         self.addSubview(statusLabel)
@@ -152,7 +152,6 @@ class ProfileHeaderView: UIView {
         self.addSubview(animationView)
         self.addSubview(avatarImageView)
         self.addSubview(exitButton)
-
         //Установка констрейнтов
         NSLayoutConstraint.activate(
             [avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
@@ -182,9 +181,7 @@ class ProfileHeaderView: UIView {
             statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -50),
              
             exitButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            exitButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-]
-        )
+            exitButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16)])
     }
     
     override init(frame: CGRect) {

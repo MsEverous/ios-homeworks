@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
     
-   private lazy var logoViewImage: UIImageView = {
+    private lazy var logoViewImage: UIImageView = {
         var logo = UIImageView()
         logo.image = UIImage(named: "logo")
         logo.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,7 @@ class LogInViewController: UIViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.borderWidth = 0.5
         stackView.layer.cornerRadius = 10
@@ -40,10 +40,10 @@ class LogInViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
-       return stackView
+        return stackView
     }()
-
-    private lazy var emailField: UITextField = {
+    
+    lazy var emailField: UITextField = {
         let emailField = UITextField()
         emailField.placeholder = "Email or phone"
         emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height:0))
@@ -56,31 +56,56 @@ class LogInViewController: UIViewController {
         emailField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner] //Замаскированные углы
         emailField.autocapitalizationType = .none //Указывает, что нет автоматической заглавной буквы текста.
         emailField.keyboardType = .emailAddress //Определяют тип клавиатуры для отображения текстового представления
+        emailField.delegate = self
+//        emailField.rightViewMode = .always
+//        emailField.rightView = errorEmail
         return emailField
     }()
     
-    private lazy var passwordField: UITextField = {
+    lazy var passwordField: UITextField = {
         var password = UITextField()
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         password.leftViewMode = .always
         password.placeholder = "Passowrd"
-        emailField.textColor = .black
-        emailField.font = UIFont.systemFont(ofSize: 16)
-        emailField.autocapitalizationType = .none
+        password.textColor = .black
+        password.font = UIFont.systemFont(ofSize: 16)
+        password.autocapitalizationType = .none
         password.isSecureTextEntry = true
+        password.layer.cornerRadius = 10
+        password.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        password.delegate = self
+        password.rightViewMode = .always
+        password.rightView = errorPassword
         return password
     }()
     
     private lazy var entryProfileButton: UIButton = {
         let button = UIButton(type: .system)
-//        button.backgroundColor = UIColor(named: "vk_blue")
+        //        button.backgroundColor = UIColor(named: "vk_blue")
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.setTitle("Log in", for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(entryProfile), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
+    }()
+    
+//    private lazy var errorEmail: UILabel = {
+//        let error = UILabel()
+//        error.text = "Неверный email"
+//        error.textColor = .red
+//        error.isHidden = false
+//        return error
+//    }()
+//
+     lazy var errorPassword: UILabel = {
+        let error = UILabel()
+        error.textColor = .red
+        error.font = UIFont.systemFont(ofSize: 15)
+//        error.text = ""
+        error.isHidden = true
+        return error
     }()
     
     override func viewDidLoad() {
@@ -128,34 +153,35 @@ class LogInViewController: UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-        
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
+    //Констрейнты
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
+            
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-
+            
             logoViewImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             logoViewImage.widthAnchor.constraint(equalToConstant: 100),
             logoViewImage.heightAnchor.constraint(equalToConstant: 100),
             logoViewImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-
+            
             stackView.topAnchor.constraint(equalTo: logoViewImage.bottomAnchor, constant: 120),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
             stackView.heightAnchor.constraint(equalToConstant: 100),
-
+            
             emailField.topAnchor.constraint(equalTo: stackView.topAnchor),
             emailField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             emailField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
@@ -163,16 +189,16 @@ class LogInViewController: UIViewController {
             passwordField.topAnchor.constraint(equalTo: stackView.bottomAnchor),
             passwordField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             passwordField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-                
-            entryProfileButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            
+            entryProfileButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
             entryProfileButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             entryProfileButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             entryProfileButton.heightAnchor.constraint(equalToConstant: 50),
-            entryProfileButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
-            }
-
-    @objc func entryProfile() {
-        let profileViewController = ProfileViewController() //Создаем вью куда будем переходить
-        self.navigationController?.pushViewController(profileViewController, animated: true) //действие перехода во вью через навигацию
-    }
+            entryProfileButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//
+//            errorPassword.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -10),
+//            errorPassword.leadingAnchor.constraint(equalTo: stackView.leadingAnchor)
+        ])
+        }
+    
 }
