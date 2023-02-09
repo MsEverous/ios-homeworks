@@ -8,6 +8,7 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
+    private var profileViewController = ProfileViewController()
     
     private var statusText: String = "Waiting for something...."
     
@@ -18,6 +19,9 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderColor = UIColor.white.cgColor //Цвет рамки
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "Avatar")
+        imageView.layer.cornerRadius = avatarSize/2
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animationOfAvatar)))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -69,28 +73,86 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
+
+    private var animationView: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: -100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + 100))
+        view.alpha = 0
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    private lazy var exitButton: UIButton = {
+        var button = UIButton()
+        button.alpha = 0
+        button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(returnProfileView), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     @objc func buttonPressed() {
-            statusLabel.text = statusText
-    }
-    
+               statusLabel.text = statusText
+       }
+       
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? statusText
+    }
+    
+    private lazy var avatarCenter = avatarImageView.center
+    private lazy var avatarBounds = avatarImageView.layer.bounds
+    private lazy var tabBar = ((superview as? UITableView)?.dataSource as? UIViewController)?.tabBarController?.tabBar
+    private lazy var avatarSize = CGFloat(220 - 3 * 16 - 50.0)
+  
+       
+    @objc func animationOfAvatar() {
+        avatarCenter = avatarImageView.center
+        avatarBounds = avatarImageView.bounds
+        UIView.animate(withDuration: 0.5) { [self] in
+            animationView.alpha = 0.8
+            avatarImageView.layer.borderWidth = 0
+            avatarImageView.layer.cornerRadius = 0
+            avatarImageView.center = animationView.center
+            avatarImageView.layer.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+            tabBar?.frame.origin.y = UIScreen.main.bounds.height
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 0.0) { [self] in
+                exitButton.alpha = 1
+                }
+            }
+    }
+    
+    @objc func returnProfileView() {
+        UIView.animate(withDuration: 0.3) { [self] in
+            exitButton.alpha = 0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5) { [self] in
+            animationView.alpha = 0
+            avatarImageView.layer.borderWidth = 2
+            avatarImageView.layer.cornerRadius = avatarSize / 2
+            avatarImageView.center = avatarCenter
+            avatarImageView.bounds = avatarBounds
+                tabBar?.isHidden = false
+            if let bar = tabBar {
+                bar.frame.origin.y = UIScreen.main.bounds.height - bar.frame.height
+                }
+            }
+        }
     }
     
 //УСТАНОВКА НА ЭКРАН
     
     private func setupView() {
-
         self.backgroundColor = .systemGray6
         
-        self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(setStatusButton)
         self.addSubview(statusLabel)
         self.addSubview(statusTextField)
-        buttonPressed()
-  
+        self.addSubview(animationView)
+        self.addSubview(avatarImageView)
+        self.addSubview(exitButton)
+
         //Установка констрейнтов
         NSLayoutConstraint.activate(
             [avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
@@ -117,18 +179,18 @@ class ProfileHeaderView: UIView {
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 32),
             statusLabel.heightAnchor.constraint(equalTo: avatarImageView.heightAnchor, multiplier: 0.3),
             statusLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -50)]
+            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -50),
+             
+            exitButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            exitButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+]
         )
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.height/2
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupView()
+        setupView()
+        backgroundColor = .systemGray6
     }
     
     required init?(coder: NSCoder) {
