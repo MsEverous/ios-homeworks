@@ -8,7 +8,7 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    var postIndex = 0
+    public var postIndex = 0
     
     private lazy var cellAuthor: UILabel = {
         let author = UILabel()
@@ -32,6 +32,8 @@ class PostTableViewCell: UITableViewCell {
        let image = UIImageView()
         image.backgroundColor = .black
         image.contentMode = .scaleAspectFill
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPost)))
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -97,6 +99,7 @@ class PostTableViewCell: UITableViewCell {
 
     func setupPost(_ index: Int) {
         postIndex = index
+        
         cellAuthor.text = postArray[postIndex].author
         cellImage.image = UIImage(named: postArray[postIndex].image)
         cellDescription.text = postArray[postIndex].description
@@ -107,5 +110,19 @@ class PostTableViewCell: UITableViewCell {
     @objc func addLikesCount() {
         postArray[postIndex].likes += 1
         cellLikes.text = "Likes:\(postArray[postIndex].likes)"
+    }
+    
+    @objc func openPost() {
+        postArray[postIndex].views += 1
+        cellViews.text = "Views: \(postArray[postIndex].views)"
+        
+        if let navigationController = ((superview as? UITableView)?.dataSource as? UIViewController)?.navigationController {
+            let openPostVC = OpenPostViewController()
+            openPostVC.postIndex = postIndex
+            let nc = UINavigationController(rootViewController: openPostVC)
+            nc.modalPresentationStyle = .fullScreen
+            nc.modalTransitionStyle = .flipHorizontal
+            navigationController.present(nc, animated: true)
+        }
     }
 }

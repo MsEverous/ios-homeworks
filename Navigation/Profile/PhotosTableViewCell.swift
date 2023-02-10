@@ -81,7 +81,6 @@ extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     //MARK: -UICollectionViewDelegateFlowLayout
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width / 4 - 8, height: (collectionView.frame.width / 4 - 8) / 1.5)
     } //Функция чтобы задать размер фоточек

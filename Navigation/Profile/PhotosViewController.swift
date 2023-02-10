@@ -27,7 +27,6 @@ class PhotosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "Photos Gallery"
         self.view.addSubview(collectionView)
 
@@ -38,8 +37,6 @@ class PhotosViewController: UIViewController {
             self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     }
-
-    
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
@@ -63,19 +60,17 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: imgWH, height: imgWH)
         }
 
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-        }
-
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
             12
-        }
+    }
 
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
             12
-        }
-
-       
+    }
 }
 
 

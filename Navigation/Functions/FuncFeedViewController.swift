@@ -7,7 +7,6 @@
 
 import UIKit
 
- 
 extension FeedViewController {
     func setupButton() {
         self.view.addSubview(self.button) //Добавляет кнопку во вью а все снизу настраивает ее положение

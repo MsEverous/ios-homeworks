@@ -91,14 +91,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
-//    private lazy var errorEmail: UILabel = {
-//        let error = UILabel()
-//        error.text = "Неверный email"
-//        error.textColor = .red
-//        error.isHidden = false
-//        return error
-//    }()
-//
      lazy var errorPassword: UILabel = {
         let error = UILabel()
         error.textColor = .red
