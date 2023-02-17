@@ -164,7 +164,7 @@ class ProfileHeaderView: UIView {
         self.addSubview(avatarImageView)
         self.addSubview(exitButton)
         //Установка констрейнтов
-        NSLayoutConstraint.activate(
+        NSLayoutConstraint.activate (
             [avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
              avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
              avatarImageView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.3),

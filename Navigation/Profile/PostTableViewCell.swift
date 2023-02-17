@@ -8,7 +8,8 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    public var postIndex = 0
+    var postIndex = 0
+    var flag = true
     
     private lazy var cellAuthor: UILabel = {
         let author = UILabel()
@@ -32,8 +33,6 @@ class PostTableViewCell: UITableViewCell {
        let image = UIImageView()
         image.backgroundColor = .black
         image.contentMode = .scaleAspectFill
-        image.isUserInteractionEnabled = true
-        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPost)))
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -97,9 +96,12 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupPost(_ index: Int) {
+    func setupPost(_ index: Int, _ flag: Bool = true) {
         postIndex = index
-        
+        if flag {
+            cellImage.isUserInteractionEnabled = true
+            cellImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPost)))
+        }
         cellAuthor.text = postArray[postIndex].author
         cellImage.image = UIImage(named: postArray[postIndex].image)
         cellDescription.text = postArray[postIndex].description
@@ -115,14 +117,15 @@ class PostTableViewCell: UITableViewCell {
     @objc func openPost() {
         postArray[postIndex].views += 1
         cellViews.text = "Views: \(postArray[postIndex].views)"
-        
         if let navigationController = ((superview as? UITableView)?.dataSource as? UIViewController)?.navigationController {
             let openPostVC = OpenPostViewController()
             openPostVC.postIndex = postIndex
+            openPostVC.flag = false
             let nc = UINavigationController(rootViewController: openPostVC)
             nc.modalPresentationStyle = .fullScreen
             nc.modalTransitionStyle = .flipHorizontal
             navigationController.present(nc, animated: true)
+            
         }
     }
 }
