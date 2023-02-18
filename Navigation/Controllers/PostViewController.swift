@@ -15,6 +15,5 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         setupPostController()
         self.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(saveProfile)), animated: true)
-        // Do any additional setup after loading the view.
     }
 }

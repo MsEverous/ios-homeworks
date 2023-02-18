@@ -58,8 +58,7 @@ class PhotosTableViewCell: UITableViewCell {
             photosCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             photosCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             photosCollectionView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15),
-            photosCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
-            ])
+            photosCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)])
     }
 
     required init?(coder: NSCoder) {
@@ -84,4 +83,14 @@ extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width / 4 - 8, height: (collectionView.frame.width / 4 - 8) / 1.5)
     } //Функция чтобы задать размер фоточек
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = ProfilesPhotosViewController()
+        viewController.name =  "\(indexPath.row + 1)"
+        if let tv = superview as? UITableView {
+            if let vc = tv.dataSource as? UIViewController {
+                vc.navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+    }
 }

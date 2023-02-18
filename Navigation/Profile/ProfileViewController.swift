@@ -72,29 +72,3 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     } //Открытие галереи при нажатии на фото
 
 }
-    
-//    private lazy var profileHeaderView: ProfileHeaderView = {
-//        let profileHeaderView = ProfileHeaderView()
-//        profileHeaderView.backgroundColor = .lightGray
-//        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-//        return profileHeaderView
-//    }()
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        self.view.backgroundColor = .lightGray
-//        self.navigationItem.title = "Profile"
-//        navigationController?.navigationBar.isHidden = false
-//        self.view.addSubview(profileHeaderView)
-//
-//    }
-//
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//
-//        NSLayoutConstraint.activate(
-//            [profileHeaderView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-//             profileHeaderView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-//             profileHeaderView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)])
-//          // profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
-//    }

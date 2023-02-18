@@ -13,10 +13,10 @@ extension SceneDelegate {
         UITabBar.appearance().backgroundColor = .systemGray4
         tabBarController.viewControllers = [createProfileViewController(), createFeedViewController()]
         return tabBarController
-    } //Создаем таббар
+    } //Создаем таббар- то что снизу
     
     func createProfileViewController() -> UINavigationController {
-        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
+        let profileViewController = UINavigationController(rootViewController: LogInViewController())
         profileViewController.title = "Профиль"
         profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 0)
         return profileViewController

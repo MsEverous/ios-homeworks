@@ -81,7 +81,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var entryProfileButton: UIButton = {
         let button = UIButton(type: .system)
-        //        button.backgroundColor = UIColor(named: "vk_blue")
+        //button.backgroundColor = UIColor(named: "vk_blue")
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.setTitle("Log in", for: .normal)
         button.tintColor = .white
@@ -186,10 +186,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             entryProfileButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             entryProfileButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             entryProfileButton.heightAnchor.constraint(equalToConstant: 50),
-            entryProfileButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//
-//            errorPassword.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -10),
-//            errorPassword.leadingAnchor.constraint(equalTo: stackView.leadingAnchor)
+            entryProfileButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         }
     

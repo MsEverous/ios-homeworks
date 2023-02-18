@@ -125,7 +125,6 @@ class PostTableViewCell: UITableViewCell {
             nc.modalPresentationStyle = .fullScreen
             nc.modalTransitionStyle = .flipHorizontal
             navigationController.present(nc, animated: true)
-            
         }
     }
 }

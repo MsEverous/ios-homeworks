@@ -34,7 +34,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
 
     func setup(image: String) {
         self.imageView.image = UIImage(named: image)
-        self.imageView.layer.cornerRadius = 0
     }
 }
 

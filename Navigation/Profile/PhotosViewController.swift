@@ -15,7 +15,6 @@ class PhotosViewController: UIViewController {
         return layout
     }()
 
-
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCollectionViewCell")
@@ -27,7 +26,7 @@ class PhotosViewController: UIViewController {
 
     private let animationView: UIView = {
         var animationView = UIView()
-        animationView.backgroundColor = .black
+        animationView.backgroundColor = .white
         animationView.alpha = 0
         animationView.translatesAutoresizingMaskIntoConstraints = false
         return animationView
@@ -50,6 +49,7 @@ class PhotosViewController: UIViewController {
         navigationItem.rightBarButtonItem?.isHidden = true
         navigationController?.navigationBar.isHidden = false
         navigationController?.tabBarController?.tabBar.isHidden = true
+        
         self.view.addSubview(collectionView)
         self.view.addSubview(animationView)
         self.view.addSubview(animationImage)
@@ -74,7 +74,9 @@ class PhotosViewController: UIViewController {
     
     @objc func closeImg() {
         navigationItem.rightBarButtonItem?.isHidden = true
-        UIView.animate(withDuration: 1) { [self] in
+        navigationItem.title = "Photos Gallery"
+        navigationItem.hidesBackButton = false
+        UIView.animate(withDuration: 0.5) { [self] in
             animationImage.alpha = 0
             animationView.alpha = 0
         }
@@ -117,9 +119,11 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         animationImage.image = UIImage(named: "\(indexPath.row + 1)")
         navigationItem.rightBarButtonItem?.isHidden = false
-        UIView.animate(withDuration: 1, delay: 0.3) { [self] in
+        navigationItem.title = ""
+        navigationItem.hidesBackButton = true
+        UIView.animate(withDuration: 0.5) { [self] in
             animationImage.alpha = 1
-            animationView.alpha = 0.8
+            animationView.alpha = 1
         }
     }
 }
