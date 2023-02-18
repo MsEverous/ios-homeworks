@@ -73,9 +73,9 @@ extension LogInViewController {
                 self.present(alert, animated: true)
             }
             return false
-        } else if passwordField.text != "" && passwordField.text != "password" {
+        } else if passwordField.text != "" && passwordField.text != "123456" {
             UIView.animate(withDuration: 1, delay: 0.3) {
-                let alert = UIAlertController(title: "Неверный пароль", message: "Твой пароль password", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Неверный пароль", message: "Твой пароль 123456", preferredStyle: .alert)
                 let choice = UIAlertAction(title: "Принято🫡", style: .cancel)
                 alert.addAction(choice)
                 self.present(alert, animated: true)

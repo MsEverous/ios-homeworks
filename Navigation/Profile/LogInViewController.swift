@@ -66,7 +66,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         var password = UITextField()
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         password.leftViewMode = .always
-        password.placeholder = "Passowrd"
+        password.placeholder = "Password"
         password.textColor = .black
         password.font = UIFont.systemFont(ofSize: 16)
         password.autocapitalizationType = .none
