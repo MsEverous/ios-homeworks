@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 extension PostViewController {
     
      func setupPostController() {

@@ -21,6 +21,9 @@
 		E410425229507E54004D89EE /* FuncInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E410425129507E54004D89EE /* FuncInfoViewController.swift */; };
 		E410427C295C333A004D89EE /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E410427B295C333A004D89EE /* ProfileHeaderView.swift */; };
 		E46424C0297147F10086B2DC /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46424BF297147F10086B2DC /* LogInViewController.swift */; };
+		E4B142CF298D117A0080C034 /* FuncLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B142CE298D117A0080C034 /* FuncLoginViewController.swift */; };
+		E4B142D129963CBD0080C034 /* OpenPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B142D029963CBD0080C034 /* OpenPostViewController.swift */; };
+		E4C8A22729A0C0E300B8050D /* ProfilesPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8A22629A0C0E300B8050D /* ProfilesPhotosViewController.swift */; };
 		E4F2D9602976BC37002D94CA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2D95F2976BC37002D94CA /* Post.swift */; };
 		E4F2D962297AA03D002D94CA /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2D961297AA03D002D94CA /* PostTableViewCell.swift */; };
 		E4F2D964297E6DDE002D94CA /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2D963297E6DDE002D94CA /* PhotosTableViewCell.swift */; };
@@ -45,6 +48,9 @@
 		E410425129507E54004D89EE /* FuncInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncInfoViewController.swift; sourceTree = "<group>"; };
 		E410427B295C333A004D89EE /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		E46424BF297147F10086B2DC /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		E4B142CE298D117A0080C034 /* FuncLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncLoginViewController.swift; sourceTree = "<group>"; };
+		E4B142D029963CBD0080C034 /* OpenPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPostViewController.swift; sourceTree = "<group>"; };
+		E4C8A22629A0C0E300B8050D /* ProfilesPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesPhotosViewController.swift; sourceTree = "<group>"; };
 		E4F2D95F2976BC37002D94CA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E4F2D961297AA03D002D94CA /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		E4F2D963297E6DDE002D94CA /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 				E410424F294DAF84004D89EE /* FuncFeedViewController.swift */,
 				E410424D294DAF57004D89EE /* FuncPostViewController.swift */,
 				E410424B294DADD3004D89EE /* FuncSceneDelegate.swift */,
+				E4B142CE298D117A0080C034 /* FuncLoginViewController.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -126,6 +133,8 @@
 				E4F2D963297E6DDE002D94CA /* PhotosTableViewCell.swift */,
 				E4F2D965297E9BDB002D94CA /* PhotosCollectionViewCell.swift */,
 				E4F2D967297FD6DC002D94CA /* PhotosViewController.swift */,
+				E4B142D029963CBD0080C034 /* OpenPostViewController.swift */,
+				E4C8A22629A0C0E300B8050D /* ProfilesPhotosViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -204,10 +213,12 @@
 				E4F2D968297FD6DC002D94CA /* PhotosViewController.swift in Sources */,
 				E4104247294C5156004D89EE /* PostViewController.swift in Sources */,
 				E410422F294B3FFF004D89EE /* AppDelegate.swift in Sources */,
+				E4B142D129963CBD0080C034 /* OpenPostViewController.swift in Sources */,
 				E410427C295C333A004D89EE /* ProfileHeaderView.swift in Sources */,
 				E410425229507E54004D89EE /* FuncInfoViewController.swift in Sources */,
 				E4F2D9602976BC37002D94CA /* Post.swift in Sources */,
 				E410424A294C6F31004D89EE /* InfoViewController.swift in Sources */,
+				E4C8A22729A0C0E300B8050D /* ProfilesPhotosViewController.swift in Sources */,
 				E4104245294B409C004D89EE /* ProfileViewController.swift in Sources */,
 				E4F2D962297AA03D002D94CA /* PostTableViewCell.swift in Sources */,
 				E410424C294DADD3004D89EE /* FuncSceneDelegate.swift in Sources */,
@@ -216,6 +227,7 @@
 				E4104231294B3FFF004D89EE /* SceneDelegate.swift in Sources */,
 				E4F2D966297E9BDB002D94CA /* PhotosCollectionViewCell.swift in Sources */,
 				E4104250294DAF84004D89EE /* FuncFeedViewController.swift in Sources */,
+				E4B142CF298D117A0080C034 /* FuncLoginViewController.swift in Sources */,
 				E410424E294DAF57004D89EE /* FuncPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,7 +375,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -395,7 +407,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

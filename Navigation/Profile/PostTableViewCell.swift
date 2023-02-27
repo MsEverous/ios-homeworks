@@ -8,8 +8,10 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    var postIndex = 0
+    var flag = true
     
-    var cellAuthor: UILabel = {
+    private lazy var cellAuthor: UILabel = {
         let author = UILabel()
         author.font = .systemFont(ofSize: 20, weight: .bold)
         author.textColor = .black
@@ -18,7 +20,7 @@ class PostTableViewCell: UITableViewCell {
         return author
     }()
     
-    var cellDescription: UILabel = {
+    private lazy var cellDescription: UILabel = {
        let description = UILabel()
         description.font = .systemFont(ofSize: 14)
         description.textColor = .systemGray
@@ -27,7 +29,7 @@ class PostTableViewCell: UITableViewCell {
         return description
     }()
     
-    var cellImage: UIImageView = {
+    private lazy var cellImage: UIImageView = {
        let image = UIImageView()
         image.backgroundColor = .black
         image.contentMode = .scaleAspectFill
@@ -35,15 +37,17 @@ class PostTableViewCell: UITableViewCell {
         return image
     }()
     
-    var cellLikes: UILabel = {
+    private lazy var cellLikes: UILabel = {
         let likes = UILabel()
         likes.textColor = .black
         likes.font = .systemFont(ofSize: 16)
+        likes.isUserInteractionEnabled = true
+        likes.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addLikesCount)))
         likes.translatesAutoresizingMaskIntoConstraints = false
         return likes
     }()
     
-    var cellViews: UILabel = {
+    private lazy var cellViews: UILabel = {
         let views = UILabel()
         views.font = .systemFont(ofSize: 16)
         views.translatesAutoresizingMaskIntoConstraints = false
@@ -92,11 +96,35 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupPost(post: Post) {
-        cellAuthor.text = post.author
-        cellImage.image = UIImage(named: post.image)
-        cellDescription.text = post.description
-        cellLikes.text = "Likes:\(post.likes)"
-        cellViews.text = "Views: \(post.views)"
+    func setupPost(_ index: Int, _ flag: Bool = true) {
+        postIndex = index
+        if flag {
+            cellImage.isUserInteractionEnabled = true
+            cellImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openPost)))
+        }
+        cellAuthor.text = postArray[postIndex].author
+        cellImage.image = UIImage(named: postArray[postIndex].image)
+        cellDescription.text = postArray[postIndex].description
+        cellLikes.text = "Likes:\(postArray[postIndex].likes)"
+        cellViews.text = "Views: \(postArray[postIndex].views)"
+    }
+    
+    @objc func addLikesCount() {
+        postArray[postIndex].likes += 1
+        cellLikes.text = "Likes:\(postArray[postIndex].likes)"
+    }
+    
+    @objc func openPost() {
+        postArray[postIndex].views += 1
+        cellViews.text = "Views: \(postArray[postIndex].views)"
+        if let navigationController = ((superview as? UITableView)?.dataSource as? UIViewController)?.navigationController {
+            let openPostVC = OpenPostViewController()
+            openPostVC.postIndex = postIndex
+            openPostVC.flag = false
+            let nc = UINavigationController(rootViewController: openPostVC)
+            nc.modalPresentationStyle = .fullScreen
+            nc.modalTransitionStyle = .flipHorizontal
+            navigationController.present(nc, animated: true)
+        }
     }
 }
